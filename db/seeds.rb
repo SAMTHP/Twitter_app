@@ -13,12 +13,16 @@ end
 end
 
 20.times do |m|
-  Tweet.create(content: Faker::StarWars.quote, author_id:rand(User.first.id..User.last.id))
+  Tweet.create(content: Faker::StarWars.quote, author_id:rand(User.first.id..User.last.id), liker_id:rand(User.first.id..User.last.id))
 end
 
-# 20.times do |t|
-#   Tweet.find(Tweet.first.id + t).tweet_recipients << User.find(rand(User.first.id..User.last.id))
-# end
+20.times do |t|
+  Tweet.find(Tweet.first.id + t).tweet_recipients << User.find(rand(User.first.id..User.last.id))
+end
+
+20.times do |t|
+  Tweet.find(Tweet.first.id + t).liker_recipients << User.find(rand(User.first.id..User.last.id))
+end
 
 20.times do |m|
   Follower.create(user_follower_id:rand(User.first.id..User.last.id))
